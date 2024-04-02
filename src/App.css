@@ -1,0 +1,39 @@
+.kontainer-div {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+}
+.kontainer-insideDiv{
+  width: 20px;
+}
+.kontainer-body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 90%;
+}
+.form-kontainer {
+   display: flex;
+   flex-direction: column;
+   flex-wrap: nowrap;
+   justify-content: space-between;
+}
+.form-topKontainer {
+  height: 40vh;
+}
+.formLogin-background {
+  background-color: #ECEFF1;
+  padding: 4rem 4rem 4rem 4rem;
+  border-radius: 8px;
+}
+.formLogin-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.formLogin-input {
+  width: 15rem;
+}
