@@ -1,13 +1,15 @@
 import './App.css'
 // import { Kontainer, FormLogin } from './compenets'
 // import { Home,SearchLibrary } from './pages'
-import { SearchLibrary } from './pages'
+// import { PersonalLibrary, SearchLibrary } from './pages'
+import { PersonalLibrary} from './pages'
 
 function App() {
 
   return (
     <div className='divGeneral'>
-      {<SearchLibrary />}
+      {<PersonalLibrary />}
+      {/* {<SearchLibrary />} */}
       {/* <Home /> */}
       {/* <Kontainer>
           <div className='form-kontainer'>
