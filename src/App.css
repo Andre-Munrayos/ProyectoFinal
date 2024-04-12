@@ -37,3 +37,19 @@
 .formLogin-input {
   width: 15rem;
 }
+.inputsearch-kontainer{
+  display: flex;
+  gap: 2rem;
+  justify-content: center;
+}
+.inputsearch-field{
+  width: 50%;
+
+}
+.pagination-kontainer{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  margin-top: 2rem;
+  justify-content: center;
+}
