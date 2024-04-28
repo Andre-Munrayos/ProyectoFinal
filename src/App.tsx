@@ -1,23 +1,20 @@
 import './App.css'
-// import { Kontainer, FormLogin } from './compenets'
-// import { Home,SearchLibrary } from './pages'
-// import { PersonalLibrary, SearchLibrary } from './pages'
-import { PersonalLibrary} from './pages'
+///import { Kontainer, FormLogin } from './compenets'
+import { PersonalLibrary, SearchLibrary,Home } from './pages'
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 function App() {
 
   return (
     <div className='divGeneral'>
-      {<PersonalLibrary />}
-      {/* {<SearchLibrary />} */}
-      {/* <Home /> */}
-      {/* <Kontainer>
-          <div className='form-kontainer'>
-            <div className='form-topKontainer'></div>
-            <div><FormLogin /></div>
-            <div className='form-topKontainer'></div>
-          </div>
-      </Kontainer> */}
+       <Router>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/search" element={<SearchLibrary />} />
+        <Route path="/library" element={<PersonalLibrary />} />
+      </Routes>
+    </Router>
+     
     </div>
   )
 }
