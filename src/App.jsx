@@ -1,6 +1,6 @@
 import React from "react";
 import { PersonalLibrary, SearchLibrary, Home } from "./pages";
-import { Login } from "./auth/login";
+import { Login, Register } from "./auth/";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import "./App.css";
 
@@ -10,6 +10,8 @@ function App() {
       <Router>
         <Routes>
           <Route path="/" element={<Login />} />
+          <Route path="/register" element={<Register />} />
+          <Route path="/home" element={<Home />} />
           <Route path="/search" element={<SearchLibrary />} />
           <Route path="/library" element={<PersonalLibrary />} />
         </Routes>
