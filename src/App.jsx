@@ -2,6 +2,7 @@ import React from "react";
 import { PersonalLibrary, SearchLibrary, Home } from "./pages";
 import { Login, Register } from "./auth/";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { PrivateRoute } from "./compenets/PrivateRoute";
 import "./App.css";
 
 function App() {
@@ -11,9 +12,9 @@ function App() {
         <Routes>
           <Route path="/" element={<Login />} />
           <Route path="/register" element={<Register />} />
-          <Route path="/home" element={<Home />} />
-          <Route path="/search" element={<SearchLibrary />} />
-          <Route path="/library" element={<PersonalLibrary />} />
+          <Route path="/home" element={<PrivateRoute><Home /></PrivateRoute>} />
+          <Route path="/search" element={<PrivateRoute><SearchLibrary /></PrivateRoute>} />
+          <Route path="/library" element={<PrivateRoute><PersonalLibrary /></PrivateRoute>} />
         </Routes>
       </Router>
     </div>

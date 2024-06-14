@@ -7,9 +7,11 @@ import IconButton from "@mui/material/IconButton";
 import AccountCircle from "@mui/icons-material/AccountCircle";
 import MenuItem from "@mui/material/MenuItem";
 import Menu from "@mui/material/Menu";
+import { useNavigate } from "react-router-dom";
 
 export const BarraApp = () => {
-  const [anchorEl, setAnchorEl] = React.useState(null); // Corregido aquí
+  const [anchorEl, setAnchorEl] = React.useState(null); 
+  const navigate = useNavigate();
 
   const handleMenu = (event) => {
     setAnchorEl(event.currentTarget);
@@ -17,6 +19,8 @@ export const BarraApp = () => {
 
   const handleClose = () => {
     setAnchorEl(null);
+    localStorage.clear();
+    navigate('/');
   };
 
   return (
@@ -52,8 +56,7 @@ export const BarraApp = () => {
               open={Boolean(anchorEl)}
               onClose={handleClose}
             >
-              <MenuItem onClick={handleClose}>Profile</MenuItem>
-              <MenuItem onClick={handleClose}>My account</MenuItem>
+              <MenuItem onClick={handleClose}>cerrar sesion</MenuItem>
             </Menu>
           </div>
         </Toolbar>

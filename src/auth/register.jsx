@@ -1,74 +1,29 @@
-import React from 'react'
-import {useNavigate} from 'react-router-dom'
-import { Grid, Paper,Avatar, TextField, Button } from '@mui/material';
+import React from 'react';
+import { Grid, Paper, Avatar, TextField, Button } from '@mui/material';
 import EditNoteIcon from '@mui/icons-material/EditNote';
+import { useRegister } from './hooks/useRegister';
 
- export const Register = () => {
-  const navigate = useNavigate();
-
-  const paperStyle = {
-    width: 450,
-    display: "flex",
-    "flex-direction": "column",
-    gap: "1rem",
-    padding: "3.5rem",
-    "border-radius": "8px",
-  };
-
-  const titleSection = {
-    display: "flex",
-    gap: "1rem",
-  }
-
-  const bodySection = {
-    display: "flex",
-    "flex-direction": "column", 
-    gap: "1rem",
-    "padding-bottom": "1rem",
-  }
-
-  const avatarStyle = {
-    backgroundColor: '#f50057',
-    marginBottom: 10,
-  };
-
-  const inputStyle = {
-    '& .MuiOutlinedInput-root': {
-      '&.Mui-focused fieldset': {
-        borderColor: '#f50057',
-      }
-    },
-    '& label.Mui-focused': {
-      color: '#f50057',
-    }}
-  
-    const spanLink = {
-      color: '#2196F3',
-      cursor: 'pointer',
-    }
-
-  const handleSubmit = () => {
-    navigate('/');
-  }
-
+export const Register = () => {
+  const { formik,redirect,paperStyle, titleSection, bodySection, avatarStyle, inputStyle, spanLink } = useRegister();
 
   return (
-    <Grid container justifyContent="center" alignItems="center" style={{ height: '100vh',  backgroundImage: 'url("/bg_login.webp")',
-    backgroundSize: 'cover',
-    backgroundPosition: 'center', }}>
+    <Grid container justifyContent="center" alignItems="center" style={{ height: '100vh', backgroundImage: 'url("/bg_login.webp")', backgroundSize: 'cover', backgroundPosition: 'center' }}>
       <Paper elevation={10} style={paperStyle}>
         <section style={titleSection}>
           <Avatar style={avatarStyle}><EditNoteIcon /></Avatar>
           <h2>Registro</h2>
         </section>
-        <form onSubmit={handleSubmit} style={bodySection}>
-        <TextField label='Correo Electrónico' type='email' fullWidth required sx={inputStyle}/>
-        <TextField label='Nombre de Usuario' type='text' fullWidth required sx={inputStyle}/>
-        <TextField label='Contraseña' type='password' fullWidth required sx={inputStyle} />
-        <span style={spanLink} onClick={() => navigate('/')}>Posees una cuenta? Inicia Sesión</span>
-        <Button type='Submit' color='success' variant="contained" fullWidth>Registrate</Button>
+        <form onSubmit={formik.handleSubmit} style={bodySection}>
+          <TextField id='email' label='Correo Electrónico' type='email' fullWidth required {...formik.getFieldProps('email')} sx={inputStyle} />
+          {formik.touched.email && formik.errors.email ? <div>{formik.errors.email}</div> : null}
+          <TextField id='name' label='Nombre de Usuario' type='text' fullWidth required {...formik.getFieldProps('name')} sx={inputStyle} />
+          {formik.touched.name && formik.errors.name ? <div>{formik.errors.name}</div> : null}
+          <TextField id='password' label='Contraseña' type='password' fullWidth required {...formik.getFieldProps('password')} sx={inputStyle} />
+          {formik.touched.password && formik.errors.password ? <div>{formik.errors.password}</div> : null}
+          <span style={spanLink} onClick={redirect}>¿Posees una cuenta? Inicia Sesión</span>
+          <Button type='submit' color='success' variant="contained" fullWidth>Regístrate</Button>
         </form>
       </Paper>
     </Grid>
-  )
-}
+  );
+};
