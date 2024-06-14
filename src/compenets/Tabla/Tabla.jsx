@@ -6,50 +6,53 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
+import { truncateString } from "../../utils";
+import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
+import IconButton from '@mui/material/IconButton';
 
-function createData(Titulo, Autor, Editorial, Año, Genero, Idioma) {
-  return { Titulo, Autor, Editorial, Año, Genero, Idioma };
-}
-
-const rows = [
-  createData("Frozen yoghurt", "159", "6.0", 24, "4.0", "0"),
-  createData("Ice cream sandwich", "237", "9.0", 37, "4.3", "0"),
-  createData("Eclair", "262", "16.0", 24, "6.0", "0"),
-  createData("Cupcake", "305", "3.7", 67, "4.3", "0"),
-  createData("Gingerbread", "356", "16.0", 49, "3.9", "0"),
-  createData("Gingerbread", "0", "0.0", 49, "0.9", "0"),
-];
-
-export const Tabla = () => {
+export const Tabla = ({books,changeAvailability}) => {
+  
+  if (!books || !books.length) {
+    return <div>No hay libros disponibles.</div>;
+  }
   return (
     <TableContainer component={Paper}>
       <Table sx={{ minWidth: 650 }} aria-label="simple table">
         <TableHead>
           <TableRow>
             <TableCell>Libros</TableCell>
+            <TableCell align="right">Titulo</TableCell>
             <TableCell align="right">Autor&nbsp;(es)</TableCell>
             <TableCell align="right">Editorial</TableCell>
-            <TableCell align="right">Año</TableCell>
+            <TableCell align="right">Fecha de publicación</TableCell>
+            <TableCell align="right">ISBN</TableCell>
+            <TableCell align="right">Número de páginas</TableCell>
             <TableCell align="right">Genero</TableCell>
             <TableCell align="right">Idioma</TableCell>
+            <TableCell align="right"></TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
-          {rows.map((row, index) => (
-            <TableRow
-              key={row.Titulo + index}
-              sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
-            >
-              <TableCell component="th" scope="row">
-                {row.Titulo}
-              </TableCell>
-              <TableCell align="right">{row.Autor}</TableCell>
-              <TableCell align="right">{row.Editorial}</TableCell>
-              <TableCell align="right">{row.Año}</TableCell>
-              <TableCell align="right">{row.Genero}</TableCell>
-              <TableCell align="right">{row.Idioma}</TableCell>
-            </TableRow>
-          ))}
+        {books.map((row, index) => (
+        <TableRow key={row.Titulo + index}>
+        <TableCell component="th" scope="row">
+          {truncateString(row.Titulo, 25)}
+        </TableCell>
+        <TableCell align="right">{truncateString(row.Titulo, 25)}</TableCell>
+        <TableCell align="right">{truncateString(row['Autor(es)'] ? row['Autor(es)'].join(', ') : "", 20)}</TableCell>
+        <TableCell align="right">{truncateString(row.Editorial, 15)}</TableCell>
+        <TableCell align="right">{truncateString(row['Fecha de publicación'], 10)}</TableCell>
+        <TableCell align="right">{truncateString(row['ISBN'], 15)}</TableCell>
+        <TableCell align="right">{row['Número de páginas']}</TableCell>
+        <TableCell align="right">{truncateString(row.Genero, 15)}</TableCell>
+        <TableCell align="right">{truncateString(row.Idioma, 10)}</TableCell>
+        <TableCell align="right">
+          <IconButton onClick={() => changeAvailability(row.id, !row.disponible)}>
+           <AddCircleOutlineIcon />
+          </IconButton>
+        </TableCell>
+      </TableRow>
+        ))}
         </TableBody>
       </Table>
     </TableContainer>
